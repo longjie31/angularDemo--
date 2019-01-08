@@ -1,0 +1,8 @@
+<div *ngIf="messageService.messages.length">
+  <h2>信息集群</h2>
+  <h3>消息服务中心的每条服务:</h3>
+  <div *ngFor="let message of messageService.messages;let i = index;">
+    {{i}}：{{message}}
+  </div>
+  <button class="clear" (click)="messageService.clear()">清除</button>
+</div>
