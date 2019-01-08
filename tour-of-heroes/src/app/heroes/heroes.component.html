@@ -1,0 +1,22 @@
+<!--<div *ngIf="selectedHero">
+  <h2>
+    {{selectedHero.name|uppercase}} 详情
+  </h2>
+  <div>英雄ID:{{selectedHero.id}}</div>
+  <div>英雄名称:{{selectedHero.name}}</div>
+  &lt;!&ndash;<div>
+    <label>名称：</label>
+    <input type="text" [(ngModel)]="hero.name">
+  </div>&ndash;&gt;
+</div>-->
+<h2>英雄们</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+    <span class="badge">{{hero.id}}</span>
+    {{hero.name}}
+  </li>
+</ul>
+<div>
+  英雄详情：
+  <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+</div>
