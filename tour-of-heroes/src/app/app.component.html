@@ -1,5 +1,9 @@
 <h1>
   {{title}}
 </h1>
-<app-heroes></app-heroes>
+<nav>
+  <a routerLink="/dashboard" routerLinkActive="active">仪表板</a>
+  <a routerLink="/heroes" routerLinkActive="active">英雄们</a>
+</nav>
+<router-outlet></router-outlet>
 <app-messages></app-messages>

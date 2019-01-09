@@ -2,10 +2,13 @@
   <h2>
     {{hero.name|uppercase}} 详情
   </h2>
-  <div>英雄ID:{{hero.id}}</div>
-  <div>英雄名称:{{hero.name}}</div>
+  <div>
+    <span>英雄ID:{{hero.id}}</span>
+    英雄名称:{{hero.name}}
+  </div>
   <div>
     <label>名称：</label>
     <input type="text" [(ngModel)]="hero.name">
   </div>
+  <button (click)="goBack()">返回</button>
 </div>
