@@ -11,7 +11,6 @@ import {catchError, map, tap} from 'rxjs/operators';
 })
 export class HeroService {
   private heroesUrl = 'api/heroes';
-
   // handleError会在很多服务间共享，所以进行了通用化，返回错误处理函数
   // 处理失败的http操作，让应用程序继续，参数operation失败操作的名称，参数result可观察结果返回的可选值
   private handleError<T>(operation = 'operation', result?: T) {
@@ -55,5 +54,56 @@ export class HeroService {
 
   private log(message: string) {
     this.messageService.add(`英雄服务：${message}`);
+  }
+
+  // 更新数据到服务器上
+  updateHero(hero: Hero): Observable<any> {
+    // 特殊的头，在下面httOptions常量中定义
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    // HttpClient.put接受三个参数，url地址，要修改的数据，选项
+    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+      tap(_ => this.log(`更新英雄的id是${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+  // 增加新英雄方法
+  addHero(hero: Hero): Observable<Hero> {
+    // 特殊的头，在下面httOptions常量中定义
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+      tap((returnHero: Hero) => this.log(`添加了英雄，英雄ID是${returnHero.id}`)),
+      catchError(this.handleError<Hero>('添加英雄'))
+    );
+  }
+
+  // 删除英雄方法
+  deleteHero(hero: Hero | number): Observable<Hero> {
+    // 特殊的头，在下面httOptions常量中定义
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    const id = typeof hero === 'number' ? hero : hero.id;
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.delete<Hero>(url, httpOptions).pipe(
+      tap(_ => this.log(`删除的英雄，ID是=${id}`)),
+      catchError(this.handleError<Hero>('删除英雄'))
+    );
+  }
+
+  // 搜索英雄方法
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      // 如果是空的，返回空的英雄数组
+      return of([]);
+    }
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap(_ => this.log(`发现匹配的英雄 ${term}`)),
+      catchError(this.handleError<Hero[]>('搜索英雄', []))
+    );
   }
 }
