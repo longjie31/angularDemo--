@@ -4,6 +4,14 @@
 <nav>
   <a routerLink="/dashboard" routerLinkActive="active">仪表板</a>
   <a routerLink="/heroes" routerLinkActive="active">英雄们</a>
+  <a routerLink="/admin" routerLinkActive="active">管理中心</a>
+  <a routerLink="/crisis-center" routerLinkActive="active">危机中心</a>
+  <a routerLink="/heroesList" routerLinkActive="active">英雄中心</a>
+  <a [routerLink]="[{outlets:{popup:['compose']}}]">联系</a>
 </nav>
-<router-outlet></router-outlet>
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>
+<router-outlet name="popup"></router-outlet>
 <app-messages></app-messages>
+

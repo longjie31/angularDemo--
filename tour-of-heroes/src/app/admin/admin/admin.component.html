@@ -1,0 +1,10 @@
+<h3>
+  路由守卫测试
+</h3>
+<nav>
+  <a routerLink="./" routerLinkActive="active"
+     [routerLinkActiveOptions]="{exact:true}">仪表板</a>
+  <a routerLink="./crises" routerLinkActive="active">危机管理</a>
+  <a routerLink="./heroes" routerLinkActive="active">英雄管理</a>
+</nav>
+<router-outlet></router-outlet>
