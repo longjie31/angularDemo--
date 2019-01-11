@@ -8,6 +8,7 @@
   <a routerLink="/crisis-center" routerLinkActive="active">危机中心</a>
   <a routerLink="/heroesList" routerLinkActive="active">英雄中心</a>
   <a [routerLink]="[{outlets:{popup:['compose']}}]">联系</a>
+  <a routerLink="/login" routerLinkActive="active">登陆</a>
 </nav>
 <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>

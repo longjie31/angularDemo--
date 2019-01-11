@@ -1,3 +1,6 @@
+<h2>登陆</h2>
+<p>{{message}}</p>
 <p>
-  login works!
+  <button (click)="login()" *ngIf="!authService.isLoggedIn">登陆</button>
+  <button (click)="logout()" *ngIf="authService.isLoggedIn">登出</button>
 </p>

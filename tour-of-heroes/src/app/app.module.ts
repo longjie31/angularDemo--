@@ -11,14 +11,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { CrisisListComponent } from './crisis-list/crisis-list.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
-import { HeroesModule } from './heroes/heroes.module';
+import {HeroSearchComponent} from './hero-search/hero-search.component';
+import {CrisisListComponent} from './crisis-list/crisis-list.component';
+import {HeroListComponent} from './hero-list/hero-list.component';
+import {HeroesModule} from './heroes/heroes.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import {ComposeMessageComponent} from './compose-message/compose-message.component';
 import {AdminModule} from './admin/admin.module';
-import { LoginComponent } from './auth/login/login.component';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -30,19 +30,18 @@ import { LoginComponent } from './auth/login/login.component';
     HeroSearchComponent,
     CrisisListComponent,
     HeroListComponent,
-    ComposeMessageComponent,
-    LoginComponent
+    ComposeMessageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.
-    forRoot(InMemoryDataService, {dataEncapsulation: false}),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
     HeroesModule,
     BrowserAnimationsModule,
-    AdminModule
+    AdminModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
